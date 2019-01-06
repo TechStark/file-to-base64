@@ -40,6 +40,9 @@
 }
 
 .file-name {
+  white-space: pre;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .file-content {
