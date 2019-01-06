@@ -19,10 +19,18 @@ const FileResult = ({ name, content }) => {
       <CopyToClipboard
         text={content}
         onCopy={(text, result) => {
-          console.log("copy result: " + result);
+          if (result) {
+            console.log("Copied to clipboard");
+          } else {
+            console.warn("Failed to copy to clipboard");
+          }
         }}
       >
-        <Button className="copy-button" bsStyle="link" title="Copy to clipboard">
+        <Button
+          className="copy-button"
+          bsStyle="link"
+          title="Copy to clipboard"
+        >
           <i className="fa fa-clipboard" />
         </Button>
       </CopyToClipboard>
