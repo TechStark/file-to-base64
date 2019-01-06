@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+import "./App.scss";
 import FileToBase64 from "./FileToBase64";
 
 class App extends Component {

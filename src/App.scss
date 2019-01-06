@@ -1,0 +1,56 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.drag-area {
+  flex: 1 1 0;
+  outline: none;
+  padding: 2px;
+}
+
+.drag-active {
+  padding: 0;
+  border-width: 2px;
+  border-color: #666;
+  border-style: dashed;
+  border-radius: 5px;
+  background-color: #eef;
+}
+
+.drag-reject {
+  padding: 0;
+  border-width: 2px;
+  border-color: #c66;
+  border-style: solid;
+  border-radius: 5px;
+  background-color: #eef;
+}
+
+.file-result-container {
+  margin: 10px;
+}
+
+.file-result {
+  margin: 10px;
+  padding: 2px;
+  background-color: #eee;
+}
+
+.file-name {
+}
+
+.file-content {
+  margin-top: 5px;
+  width: 100%;
+  height: 100px;
+  resize: none;
+}
+
+.copy-button {
+  &:hover {
+    color: #0039a6;
+  }
+}

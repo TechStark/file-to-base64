@@ -1,13 +1,31 @@
 import React from "react";
 import * as R from "ramda";
 import classNames from "classnames";
+import { Button } from "react-bootstrap";
 import Dropzone from "react-dropzone";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
-const FileContent = ({ name, content }) => {
+const FileResult = ({ name, content }) => {
   return (
-    <div>
-      <div>{name}</div>
-      <div>{content}</div>
+    <div className="file-result">
+      <div className="file-name">{name}</div>
+      <textarea
+        className="file-content"
+        defaultValue={content}
+        onFocus={e => {
+          e.target.select();
+        }}
+      />
+      <CopyToClipboard
+        text={content}
+        onCopy={(text, result) => {
+          console.log("copy result: " + result);
+        }}
+      >
+        <Button className="copy-button" bsStyle="link" title="Copy to clipboard">
+          <i className="fa fa-clipboard" />
+        </Button>
+      </CopyToClipboard>
     </div>
   );
 };
@@ -43,26 +61,6 @@ class FileToBase64 extends React.Component {
   };
 
   render() {
-    const baseStyle = {
-      flex: "1 1 0",
-      outline: "none",
-      padding: 2
-    };
-    const activeStyle = {
-      padding: 0,
-      borderWidth: 2,
-      borderColor: "#666",
-      borderStyle: "dashed",
-      borderRadius: 5
-    };
-    const rejectStyle = {
-      padding: 0,
-      borderWidth: 2,
-      borderStyle: "solid",
-      borderColor: "#c66",
-      backgroundColor: "#eee"
-    };
-
     const { files } = this.state;
 
     return (
@@ -76,18 +74,21 @@ class FileToBase64 extends React.Component {
           acceptedFiles,
           rejectedFiles
         }) => {
-          let styles = { ...baseStyle };
-          styles = isDragActive ? { ...styles, ...activeStyle } : styles;
-          styles = isDragReject ? { ...styles, ...rejectStyle } : styles;
-
           return (
-            <div {...getRootProps()} style={styles}>
+            <div
+              {...getRootProps()}
+              className={classNames("drag-area", {
+                "drag-active": isDragActive,
+                "drag-reject": isDragReject
+              })}
+            >
               {/* <input {...getInputProps()} /> */}
-              <div>{isDragAccept ? "Drop" : "Drag"} files here...</div>
+              <h2>File to Base64 Encoder</h2>
+              <h4>{isDragAccept ? "Drop" : "Drag"} files here...</h4>
               {isDragReject && <div>Unsupported file type...</div>}
-              <div>
+              <div className="file-result-container">
                 {files.map(file => (
-                  <FileContent
+                  <FileResult
                     key={file.name}
                     name={file.name}
                     content={file.content}
