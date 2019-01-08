@@ -31,6 +31,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "node-sass": "^4.11.0"
+    "node-sass": "^4.11.0",
+    "sitemap-static": "^0.4.4"
   }
 }
