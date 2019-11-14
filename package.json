@@ -4,7 +4,7 @@
   "homepage": "./",
   "private": true,
   "dependencies": {
-    "bootstrap-sass": "^3.4.0",
+    "bootstrap-sass": "^3.4.1",
     "classnames": "^2.2.6",
     "font-awesome": "^4.7.0",
     "ramda": "^0.26.1",
